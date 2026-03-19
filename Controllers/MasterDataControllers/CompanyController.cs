@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 using devdev_api.Common;
 using devdev_api.DTOs;
 using devdev_api.DTOs.MasterDTOs;
-using devdev_api.Extensions;
 using devdev_api.Interfaces.Services.IMaster;
-using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +13,10 @@ namespace devdev_api.Controllers.MasterDataControllers
 {
 
     public class CompanyController(
-        ICompanyService _companyService,
-        IValidator<CreateCompanyDto> _companyValidator
+        ICompanyService _companyService
     ) : MasterDataControllerBase
     {
-        [Authorize]
+        // [Authorize]
         [HttpGet("companies")]
         public async Task<IActionResult> GetAllCompany(
             [FromQuery] int page     = 1,
@@ -31,7 +28,7 @@ namespace devdev_api.Controllers.MasterDataControllers
             return Ok(ApiResponse<PagedResult<CompanyDto>>.Ok(result));
         }
 
-        [Authorize]
+        // [Authorize]
         [HttpGet("companies{id:long}")]
         public async Task<IActionResult> GetByIdCompany(long id, CancellationToken ct)
         {
@@ -39,13 +36,10 @@ namespace devdev_api.Controllers.MasterDataControllers
             return Ok(ApiResponse<CompanyDto>.Ok(result));
         }
 
-        [Authorize]
+        // [Authorize]
         [HttpPost("companies")]
         public async Task<IActionResult> CreateCompany([FromBody] CreateCompanyDto dto, CancellationToken ct)
         {
-            var (isValid, error) = await _companyValidator.ValidateRequestAsync(dto, ct);
-            if (!isValid) return BadRequest(error);
-            
             var result = await _companyService.CreateAsync(dto, ct);
             return CreatedAtAction(nameof(GetByIdCompany), new { id = result.Id },
                 ApiResponse<CompanyDto>.Ok(result, "Created successfully."));

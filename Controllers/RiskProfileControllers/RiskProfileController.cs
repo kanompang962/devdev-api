@@ -7,17 +7,13 @@ using devdev_api.Common;
 using devdev_api.DTOs;
 using devdev_api.DTOs.RiskProfileDTOs;
 using devdev_api.Interfaces.Services.IRiskProfiles;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using devdev_api.Extensions;
 
 namespace devdev_api.Controllers.RiskProfileControllers
 {
     [Route("[controller]")]
-    public class RiskProfileController(
-        IRiskProfileService _riskProfileService,
-        IValidator<CreateRiskProfileDto> _validator
-    ) : Controller
+    public class RiskProfileController(IRiskProfileService _riskProfileService) : Controller
     {
 
 
@@ -42,9 +38,6 @@ namespace devdev_api.Controllers.RiskProfileControllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateRiskProfileDto dto, CancellationToken ct)
         {
-            var (isValid, error) = await _validator.ValidateRequestAsync(dto, ct);
-            if (!isValid) return BadRequest(error);
-            
             var result = await _riskProfileService.CreateAsync(dto, ct);
             return CreatedAtAction(nameof(GetById), new { id = result.Id },
                 ApiResponse<RiskProfileDto>.Ok(result, "Created successfully."));

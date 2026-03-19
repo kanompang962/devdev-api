@@ -7,7 +7,7 @@ builder.Services
     .AddDatabase(builder.Configuration)
     .AddAutoDependencies()
     // .AddMappers()
-    .AddValids()
+    .AddValidation()
     .AddJwtAuthentication(builder.Configuration)
     .AddApiServices()
     .AddSwaggerDocumentation()

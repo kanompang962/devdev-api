@@ -8,17 +8,13 @@ using devdev_api.DTOs;
 using devdev_api.DTOs.MasterDTOs;
 using devdev_api.Extensions;
 using devdev_api.Interfaces.Services.IMaster;
-using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace devdev_api.Controllers.MasterDataControllers
 {
 
-    public class YearController(
-        IYearService _yearService,
-        IValidator<CreateYearDto> _yearValidator
-    ) : MasterDataControllerBase
+    public class YearController(IYearService _yearService) : MasterDataControllerBase
     {
 
         [Authorize]
@@ -45,9 +41,6 @@ namespace devdev_api.Controllers.MasterDataControllers
         [HttpPost("years")]
         public async Task<IActionResult> CreateYear([FromBody] CreateYearDto dto, CancellationToken ct)
         {
-            var (isValid, error) = await _yearValidator.ValidateRequestAsync(dto, ct);
-            if (!isValid) return BadRequest(error);
-            
             var result = await _yearService.CreateAsync(dto, ct);
             return CreatedAtAction(nameof(GetByIdYear), new { id = result.Id },
                 ApiResponse<YearDto>.Ok(result, "Created successfully."));
