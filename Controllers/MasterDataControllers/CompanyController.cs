@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace devdev_api.Controllers.MasterDataControllers
 {
-
+    [Tags("MasterData")]
     public class CompanyController(
         ICompanyService _companyService
     ) : MasterDataControllerBase

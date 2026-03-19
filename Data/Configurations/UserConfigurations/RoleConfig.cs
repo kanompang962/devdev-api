@@ -22,9 +22,9 @@ namespace devdev_api.Data.Configurations.UserConfigurations
                 .IsUnique();
 
             builder.HasData(
-                new Role { Id = 1, Name = "Admin",   CreatedBy = "system" },
-                new Role { Id = 2, Name = "Manager", CreatedBy = "system" },
-                new Role { Id = 3, Name = "User",    CreatedBy = "system" }
+                new Role { Id = 1, Name = "Admin" },
+                new Role { Id = 2, Name = "Manager"},
+                new Role { Id = 3, Name = "User" }
             );
         }
     }

@@ -10,6 +10,7 @@ namespace devdev_api.Controllers.MasterDataControllers
 {
     [ApiController]
     [Route("MasterData")]
+    [Tags("MasterData")]
     public abstract class MasterDataControllerBase : ControllerBase
     {
 

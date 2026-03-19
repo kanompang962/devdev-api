@@ -3,6 +3,7 @@ var deletedItems = await _context.RiskProfiles
     .Where(x => x.IsDeleted)
     .ToListAsync();
 
-dotnet ef migrations add Init 
-
-dotnet ef database update   
+dotnet ef database drop -f
+dotnet ef migrations remove
+dotnet ef migrations add InitialCreate
+dotnet ef database update

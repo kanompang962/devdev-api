@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace devdev_api.Controllers.MasterDataControllers
 {
-
+    [Tags("MasterData")]
     public class YearController(IYearService _yearService) : MasterDataControllerBase
     {
 

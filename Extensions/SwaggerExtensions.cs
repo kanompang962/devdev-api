@@ -44,12 +44,16 @@ namespace devdev_api.Extensions
 
                 opt.TagActionsBy(api =>
                 {
-                    if (api.RelativePath == null)
-                        return ["Default"];
+                    // ใช้ [Tags] attribute ถ้ามี
+                    var tags = api.ActionDescriptor.EndpointMetadata
+                        .OfType<TagsAttribute>()
+                        .FirstOrDefault()?.Tags;
 
-                    var path = api.RelativePath.Split('/')[0];
+                    if (tags?.Count > 0)
+                        return [.. tags];
 
-                    return [path];
+                    // fallback ใช้ controller name
+                    return [api.ActionDescriptor.RouteValues["controller"] ?? "Default"];
                 });
 
                 opt.DocInclusionPredicate((name, api) => true);

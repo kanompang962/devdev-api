@@ -1,4 +1,6 @@
+using devdev_api.Domain.Entities.Users;
 using devdev_api.Extensions;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 

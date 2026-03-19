@@ -11,16 +11,15 @@ namespace devdev_api.Extensions
         public static WebApplication UseAppMiddleware(this WebApplication app)
         {
             app.UseMiddleware<ExceptionMiddleware>();
+            app.UseHttpsRedirection(); // ✅ บังคับ redirect HTTP → HTTPS ก่อน
+            app.UseAuthentication(); // ✅ ก่อน
+            app.UseAuthorization(); // ✅ หลัง
 
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            app.UseHttpsRedirection();
-            app.UseAuthentication(); // ✅ ก่อน
-            app.UseAuthorization(); // ✅ หลัง
 
             app.MapControllers();
 
