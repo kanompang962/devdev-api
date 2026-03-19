@@ -1,0 +1,103 @@
+# ─── .NET ────────────────────────────────────────────────────────────────────
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+*.rsuser
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+!**/packages/build/
+*.nuspec
+
+# User secrets ⚠️ ห้าม commit เด็ดขาด
+**/appsettings.Development.json
+**/appsettings.Production.json
+**/appsettings.Local.json
+secrets.json
+
+# EF Core Migrations (optional — ถ้าอยากเก็บ migrations ให้ลบบรรทัดนี้)
+# **/Migrations/
+
+# Publish
+**/publish/
+**/PublishProfiles/
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# ─── Angular ─────────────────────────────────────────────────────────────────
+node_modules/
+dist/
+.angular/
+.sass-cache/
+connect.lock
+coverage/
+libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+typings/
+e2e/*.js
+e2e/*.map
+.DS_Store
+Thumbs.db
+
+# Environment files ⚠️ ห้าม commit เด็ดขาด
+src/environments/environment.prod.ts
+src/environments/environment.local.ts
+
+# ─── General ─────────────────────────────────────────────────────────────────
+*.env
+*.env.local
+*.env.production
+.env*
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Logs
+logs/
+*.log
+log/
+
+# SSL certs ⚠️
+*.pem
+*.key
+*.crt
+*.pfx
+*.p12
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
